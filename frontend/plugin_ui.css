@@ -1,0 +1,50 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    background: #fff;
+}
+#plugin_name {
+    width: 300px;
+    margin: 0 0;
+    background-color: #195975;
+}
+h2 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-size: 15px;
+}
+h1 {
+    font-family: 'Russo One', sans-serif;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+}
+.rounded-circle {
+    background: #58bc8a; 
+    max-width: 90px;
+    max-height: 950px;
+    padding: 10px;
+    clear: both;
+    align-content: center;
+    margin: 0 auto; 
+
+}
+#site_score{
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    font-weight: bold;
+    margin-top: 9px;
+    margin-left: 3px;
+    text-align: center;
+    font-size: 25px;
+}
+#site_msg{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-size: 15px;
+}

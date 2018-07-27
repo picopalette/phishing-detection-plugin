@@ -1,0 +1,14 @@
+{
+  "name": "PhishTor",
+  "version": "0.17.09",
+  "description": "A phishing detector plugin",
+  "permissions": ["activeTab","declarativeContent", "storage", "webNavigation"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "plugin_ui.html"
+  },
+  "manifest_version": 2
+}
