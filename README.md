@@ -4,6 +4,14 @@ This lite chrome plugin aims to detect phishing websites and warn the user. It i
 **Dataset:** [UCI Repository](https://archive.ics.uci.edu/ml/datasets/phishing+websites)  
 **Technique:** Random Forest Classifier
 
+## Requirements
+```
+**Python3.7**
+sklearn==0.19.2
+numpy==1.15.0
+arff==2.2.2
+```
+
 ## Documentation
 * [Wiki](https://github.com/picopalette/phishing-detection-plugin/wiki)
 * [Preparing the dataset](backend/dataset/README.md)
