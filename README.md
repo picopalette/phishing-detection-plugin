@@ -13,8 +13,10 @@ arff==2.2.2
 ```
 
 ## Documentation
-* [Wiki](https://github.com/picopalette/phishing-detection-plugin/wiki)
-* [Preparing the dataset](backend/dataset/README.md)
+* [Wiki - Complete reference](https://github.com/picopalette/phishing-detection-plugin/wiki)
+* [Prepare the dataset](backend/dataset/)
+* [Train and Export the model](backend/classifier/)
+* [Install plugin](frontend/)
 
 Links to few phishing sites: [PDF](artifacts/url_list.pdf)
 

@@ -1,2 +1,4 @@
 **/*.npy
 **/.ipynb_checkpoints
+**/*.json
+**/__pycache__/

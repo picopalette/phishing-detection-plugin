@@ -4,7 +4,10 @@
   "description": "A phishing detector plugin",
   "permissions": ["activeTab","declarativeContent", "storage", "webNavigation"],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "js/randomforest.js",
+      "js/background.js"
+    ],
     "persistent": false
   },
   "browser_action": {

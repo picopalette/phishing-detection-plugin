@@ -1,7 +1,11 @@
+html {
+    height: 350px;
+}
 body {
     padding: 0px;
     margin: 0px;
     background: #fff;
+    height: 350px;
 }
 #plugin_name {
     width: 300px;
@@ -23,9 +27,9 @@ h1 {
     text-align: center;
 }
 .rounded-circle {
-    background: #58bc8a; 
-    max-width: 90px;
-    max-height: 950px;
+    background: #58bc8a;
+    width: 10rem;
+    height: 10rem;
     padding: 10px;
     clear: both;
     align-content: center;
@@ -36,13 +40,14 @@ h1 {
     font-family: 'Josefin Sans', sans-serif;
     color: white;
     font-weight: bold;
-    margin-top: 9px;
+    position: relative;
+    top: 35px;
     margin-left: 3px;
     text-align: center;
-    font-size: 25px;
+    font-size: 50px;
 }
 #site_msg{
-    margin-top: 15px;
+    margin-top: 20px;
     margin-bottom: 5px;
     font-family: 'Josefin Sans', sans-serif;
     text-align: center;
