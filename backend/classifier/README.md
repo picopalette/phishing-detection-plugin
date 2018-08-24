@@ -10,4 +10,5 @@ Change working directory to `/backend/classifier` and Run
 > `python3 training.py`
 
 `classifier.py` is created in the working directory.  
-Serve this `classifier.py` over HTTP and update URL in the plugin settings.
+Serve this `classifier.py` over HTTP and update URL in the plugin settings.  
+The same file is also hosted [here](https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/backend/classifier/classifier.json).
