@@ -3,15 +3,14 @@
   "version": "0.17.09",
   "description": "A phishing detector plugin",
   "permissions": ["activeTab","declarativeContent", "storage", "webNavigation"],
-  "background": {
-    "scripts": [
-      "js/randomforest.js",
-      "js/background.js"
-    ],
-    "persistent": false
-  },
   "browser_action": {
     "default_popup": "plugin_ui.html"
   },
+  "content_scripts":[
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["jquery.js","features.js"]
+    }
+  ],
   "manifest_version": 2
 }
