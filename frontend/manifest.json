@@ -5,6 +5,8 @@
   "permissions": ["activeTab","declarativeContent", "storage", "webNavigation"],
   "background": {
     "scripts": [
+      "js/jquery.js",
+      "js/randomforest.js",
       "js/background.js"
     ],
     "persistent": false
@@ -15,7 +17,7 @@
   "content_scripts":[
     {
       "matches": ["http://*/*","https://*/*"],
-      "js": ["jquery.js","features.js"]
+      "js": ["js/jquery.js","js/features.js"]
     }
   ],
   "manifest_version": 2

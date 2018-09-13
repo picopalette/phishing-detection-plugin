@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[18]:
 
 
 import arff
@@ -9,21 +9,27 @@ import numpy as np
 from sklearn.model_selection import train_test_split, KFold
 
 
-# In[2]:
+# In[19]:
 
 
 dataset = arff.load(open('dataset.arff', 'r'))
 data = np.array(dataset['data'])
 
 
-# In[3]:
+# In[20]:
 
 
 print('The dataset has {0} datapoints with {1} features'.format(data.shape[0], data.shape[1]-1))
 print('Features: {0}'.format([feature[0] for feature in dataset['attributes']]))
 
 
-# In[6]:
+# In[21]:
+
+
+data = data[:, [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 22, 30]]
+
+
+# In[22]:
 
 
 X, y = data[:, :-1], data[:, -1]
@@ -35,7 +41,7 @@ print('After spliting')
 print('X_train:{0}, y_train:{1}, X_test:{2}, y_test:{3}'.format(X_train.shape, y_train.shape, X_test.shape, y_test.shape))
 
 
-# In[14]:
+# In[23]:
 
 
 np.save('X_train.npy', X_train)

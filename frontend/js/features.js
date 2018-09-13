@@ -16,9 +16,10 @@ var urlDomain = window.location.hostname;
 
 var patt = /(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]?[0-9])(\.|$){4}/;
 var patt2 = /(0x([0-9][0-9]|[A-F][A-F]|[A-F][0-9]|[0-9][A-F]))(\.|$){4}/;
+var ip = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
 
 
-if(patt.test(urlDomain)||patt2.test(urlDomain)){ 
+if(ip.test(urlDomain)||patt.test(urlDomain)||patt2.test(urlDomain)){ 
     result["IP Address"]="1";
 }else{
     result["IP Address"]="-1";
@@ -112,7 +113,9 @@ for (var i = 0; i < nodeList.length; i++)
         favicon = nodeList[i].getAttribute("href");
     }
 }
-if(favicon.length==12){
+if(!favicon) {
+    result["Favicon"]="-1";
+}else if(favicon.length==12){
     result["Favicon"]="-1";
 }else{
     patt=RegExp(urlDomain,'g');
@@ -151,6 +154,7 @@ patt=RegExp(onlyDomain,'g');
 
 for(var i = 0; i < imgTags.length; i++){
     var src = imgTags[i].getAttribute("src");
+    if(!src) continue;
     if(patt.test(src)){
         legitCount++;
     }else if(src.charAt(0)=='/'&&src.charAt(1)!='/'){
@@ -180,6 +184,7 @@ var allhrefs="";
 
 for(var i = 0; i < aTags.length; i++){
     var hrefs = aTags[i].getAttribute("href");
+    if(!hrefs) continue;
     allhrefs+=hrefs+"       ";
     if(patt.test(hrefs)){
         legitCount++;
@@ -230,6 +235,7 @@ for(var i = 0; i < sTags.length; i++){
 allhrefs+="      lTags   ";
 for(var i = 0; i < lTags.length; i++){
     var lTag = lTags[i].getAttribute("href");
+    if(!lTag) continue;
     allhrefs+=lTag+"       ";
     if(patt.test(lTag)){
         legitCount++;
@@ -253,9 +259,56 @@ if(outRequest<17){
 
 //alert(allhrefs);
 
+//---------------------- 16.Server Form Handler ----------------------
+
+var forms = document.getElementsByTagName("form");
+var res = "-1";
+
+for(var i = 0; i < forms.length; i++) {
+    var action = forms[i].getAttribute("action");
+    if(!action || action == "") {
+        res = "1";
+        break;
+    } else if(!(action.charAt(0)=="/" || patt.test(action))) {
+        res = "0";
+    }
+}
+result["SFH"] = res;
+
+//---------------------- 17.Submitting to mail ----------------------
+
+var forms = document.getElementsByTagName("form");
+var res = "-1";
+
+for(var i = 0; i < forms.length; i++) {
+    var action = forms[i].getAttribute("action");
+    if(!action) continue;
+    if(action.startsWith("mailto")) {
+        res = "1";
+        break;
+    }
+}
+result["mailto"] = res;
+
+//---------------------- 23.Using iFrame ----------------------
+
+var iframes = document.getElementsByTagName("iframe");
+
+if(iframes.length == 0) {
+    result["iFrames"] = "-1";
+} else {
+    result["iFrames"] = "1";
+}
+
 //---------------------- Sending the result  ----------------------
 
 chrome.runtime.sendMessage(result, function(response) {
     //console.log(result);
     //console.log(response);
 });
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.action == "alert_user")
+        alert("Warning!!! Phishing is being loaded");
+    });
