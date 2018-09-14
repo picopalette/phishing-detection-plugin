@@ -18,7 +18,11 @@ arff==2.2.2
 * [Train and Export the model](backend/classifier/)
 * [Install plugin](frontend/)
 
-Links to few phishing sites: [PDF](artifacts/url_list.pdf)
+##Performance
+![UI](https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/artifacts/pluginUI.png)
+![Evaluation](https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/artifacts/accuracy.png)
+
+Links to few phishing sites: [PDF](artifacts/url_list.pdf), [PhishTank](https://www.phishtank.com/)
 
 ### References
 [Intelligent phishing website detection using random forest classifier](https://ieeexplore.ieee.org/abstract/document/8252051/)

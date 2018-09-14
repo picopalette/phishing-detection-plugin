@@ -22,17 +22,12 @@ function test_model() {
           FP++;
         }
       }
-      var acc = (TP+TN)/(TP+TN+FP+FN);
-      console.log("True Positive: " + TP);
-      console.log("False Positive: " + FP);
-      console.log("True Negative: " + TN);
-      console.log("False Negative: " + FN);
-      console.log("Accuracy: " + acc)
-      $('#tp').text(TP);
-      $('#fp').text(FP);
-      $('#tn').text(TN);
-      $('#fn').text(FN);
-      $('#accuracy').text(acc);
+      var precision = TP/(TP+FP);
+      var recall = TP/(TP+FN);
+      var f1 = 2 * precision * recall / (precision + recall);
+      $('#precision').text(precision);
+      $('#recall').text(recall);
+      $('#accuracy').text(f1);
     });
   });
 }

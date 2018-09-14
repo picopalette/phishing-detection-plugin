@@ -52,5 +52,5 @@ print('Accuracy: {}'.format(accuracy_score(y_test, pred)))
 
 
 #print(forest_to_json(clf))
-json.dump(dump.forest_to_json(clf), open('classifier.json', 'w'))
+json.dump(dump.forest_to_json(clf), open('../../static/classifier.json', 'w'))
 

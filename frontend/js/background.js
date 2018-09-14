@@ -1,6 +1,6 @@
-var result = {};
-var legitimatePercent = 0;
-var isPhish = false;
+var results = {};
+var legitimatePercents = {};
+var isPhish = {};
 
 
 function fetchLive(callback) {
@@ -20,7 +20,7 @@ function fetchCLF(callback) {
   });
 }
 
-function classify() {
+function classify(tabId, result) {
   var legitimateCount = 0;
   var suspiciousCount = 0;
   var phishingCount = 0;
@@ -29,7 +29,7 @@ function classify() {
     else if(result[key] == "0") suspiciousCount++;
     else legitimateCount++;
   }
-  legitimatePercent = legitimateCount / (phishingCount+suspiciousCount+legitimateCount) * 94;
+  legitimatePercents[tabId] = legitimateCount / (phishingCount+suspiciousCount+legitimateCount) * 100;
 
   if(result.length != 0) {
     var X = [];
@@ -44,11 +44,13 @@ function classify() {
       y = rf.predict(X);
       console.log(y[0]);
       if(y[0][0]) {
-        isPhish = true;
+        isPhish[tabId] = true;
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
           chrome.tabs.sendMessage(tabs[0].id, {action: "alert_user"}, function(response) {
           });
         });
+      } else {
+        isPhish[tabId] = false;
       }
     });
   }
@@ -56,11 +58,7 @@ function classify() {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  result=request;
-  classify();
+  results[sender.tab.id]=request;
+  classify(sender.tab.id, request);
   sendResponse({received: "result"});
-});
-
-chrome.webNavigation.onCompleted.addListener(function(details) {
-  
 });
