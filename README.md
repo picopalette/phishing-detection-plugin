@@ -18,8 +18,8 @@ arff==2.2.2
 * [Train and Export the model](backend/classifier/)
 * [Install plugin](frontend/)
 
-##Performance
-![UI](https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/artifacts/pluginUI.png)
+## Performance
+![UI](https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/artifacts/pluginUI.png)  
 ![Evaluation](https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/artifacts/accuracy.png)
 
 Links to few phishing sites: [PDF](artifacts/url_list.pdf), [PhishTank](https://www.phishtank.com/)
