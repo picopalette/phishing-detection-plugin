@@ -9,6 +9,6 @@ The parameters of the learned model, such as number of estimators, tree paramete
 Change working directory to `/backend/classifier` and Run    
 > `python3 training.py`
 
-`classifier.py` is created in the working directory.  
+`classifier.py` is created in the `/static` directory.  
 Serve this `classifier.py` over HTTP and update URL in the plugin settings.  
-The same file is also hosted [here](https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/backend/classifier/classifier.json).
+The same file is also hosted [here](https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/static/classifier.json).
