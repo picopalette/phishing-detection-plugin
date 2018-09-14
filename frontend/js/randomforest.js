@@ -36,7 +36,6 @@ let random_forest = function(clf) {
     }
     pred = pred[0].map((col, i) => pred.map(row => row[i]));
     var results = [];
-    console.log(pred);
     for(var p in pred) {
       let positive=0, negative=0;
       for(let i in pred[p]) {

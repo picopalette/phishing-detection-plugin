@@ -9,26 +9,32 @@ function test_model() {
           x[i] = parseInt(x[i]);
         }
       }
-      console.log(X);
-      console.log(y);
       var pred = rf.predict(X);
-      console.log(pred);
       var TP = 0, TN = 0, FP = 0, FN = 0;
       for(var i in pred) {
-        if(pred[i] == 1 && y[i] == 1) {
+        if(pred[i][0] == true && y[i] == "1") {
           TP++;
-        } else if(pred[i] == -1 && y[i] == 1) {
+        } else if(pred[i][0] == false && y[i] == "1") {
           FN++;
-        } else if(pred[i] == -1 && y[i] == -1) {
+        } else if(pred[i][0] == false && y[i] == "-1") {
           TN++;
-        } else if(pred[i] == 1 && y[i] == -1) {
+        } else if(pred[i][0] == true && y[i] == "-1") {
           FP++;
         }
       }
-      console.log(TP);
-      console.log(FP);
-      console.log(TN);
-      console.log(FN);
+      var acc = (TP+TN)/(TP+TN+FP+FN);
+      console.log("True Positive: " + TP);
+      console.log("False Positive: " + FP);
+      console.log("True Negative: " + TN);
+      console.log("False Negative: " + FN);
+      console.log("Accuracy: " + acc)
+      $('#tp').text(TP);
+      $('#fp').text(FP);
+      $('#tn').text(TN);
+      $('#fn').text(FN);
+      $('#accuracy').text(acc);
     });
   });
 }
+
+test_model();
