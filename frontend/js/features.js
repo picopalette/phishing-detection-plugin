@@ -303,7 +303,7 @@ if(iframes.length == 0) {
 //---------------------- Sending the result  ----------------------
 
 chrome.runtime.sendMessage(result, function(response) {
-    //console.log(result);
+    console.log(result);
     //console.log(response);
 });
 
