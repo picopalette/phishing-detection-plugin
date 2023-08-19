@@ -2,12 +2,18 @@ var results = {};
 var legitimatePercents = {};
 var isPhish = {};
 
-
 function fetchLive(callback) {
-  $.getJSON("https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/static/classifier.json", function(data) {
-      chrome.storage.local.set({cache: data, cacheTime: Date.now()}, function() {
-          callback(data);
-      });
+  fetch('https://raw.githubusercontent.com/picopalette/phishing-detection-plugin/master/static/classifier.json', { 
+  method: 'GET'
+  })
+  .then(function(response) { 
+    if (!response.ok) { throw response }
+    return response.json(); 
+  })
+  .then(function(data) {
+    chrome.storage.local.set({cache: data, cacheTime: Date.now()}, function() {
+      callback(data);
+    });
   });
 }
 
@@ -24,6 +30,7 @@ function classify(tabId, result) {
   var legitimateCount = 0;
   var suspiciousCount = 0;
   var phishingCount = 0;
+
   for(var key in result) {
     if(result[key] == "1") phishingCount++;
     else if(result[key] == "0") suspiciousCount++;
@@ -45,12 +52,16 @@ function classify(tabId, result) {
       console.log(y[0]);
       if(y[0][0]) {
         isPhish[tabId] = true;
+      } else {
+        isPhish[tabId] = false;
+      }
+      chrome.storage.local.set({'results': results, 'legitimatePercents': legitimatePercents, 'isPhish': isPhish});
+
+      if (isPhish[tabId]) {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
           chrome.tabs.sendMessage(tabs[0].id, {action: "alert_user"}, function(response) {
           });
         });
-      } else {
-        isPhish[tabId] = false;
       }
     });
   }
