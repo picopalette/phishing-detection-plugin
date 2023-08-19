@@ -310,5 +310,7 @@ chrome.runtime.sendMessage(result, function(response) {
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       if (request.action == "alert_user")
-        alert("Warning!!! Phishing is being loaded");
-    });
+        alert("Warning!!! This seems to be a phishing website.");
+      return Promise.resolve("Dummy response to keep the console quiet");
+    }
+);

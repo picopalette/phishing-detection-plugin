@@ -4,20 +4,15 @@
   "description": "A phishing detector plugin",
   "permissions": ["activeTab","declarativeContent", "storage", "webNavigation"],
   "background": {
-    "scripts": [
-      "js/jquery.js",
-      "js/randomforest.js",
-      "js/background.js"
-    ],
-    "persistent": true
+    "service_worker": "js/bg-loader.js"
   },
-  "browser_action": {
+  "action": {
     "default_popup": "plugin_ui.html"
   },
   "content_scripts":[
     {
       "matches": ["http://*/*","https://*/*"],
-      "js": ["js/jquery.js","js/features.js"]
+      "js": ["js/features.js"]
     }
   ],
   "manifest_version": 3
