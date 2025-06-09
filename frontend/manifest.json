@@ -2,7 +2,7 @@
   "name": "PhishTor",
   "version": "1.0.01",
   "description": "A phishing detector plugin",
-  "permissions": ["activeTab","declarativeContent", "storage", "webNavigation"],
+  "permissions": ["activeTab","declarativeContent", "storage", "webNavigation", "tabs"],
   "background": {
     "service_worker": "js/bg-loader.js"
   },
@@ -13,6 +13,12 @@
     {
       "matches": ["http://*/*","https://*/*"],
       "js": ["js/features.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["warning.html"],
+      "matches": ["<all_urls>"]
     }
   ],
   "manifest_version": 3

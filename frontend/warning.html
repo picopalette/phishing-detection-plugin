@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warning - Blacklisted Website</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .warning-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            margin: 20px;
+        }
+        
+        .warning-icon {
+            font-size: 80px;
+            color: #ff4444;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .blocked-url {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff4444;
+            margin: 20px 0;
+            word-break: break-all;
+            font-family: monospace;
+            color: #666;
+        }
+        
+        .warning-text {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-safe {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-safe:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .btn-proceed {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .btn-proceed:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+        
+        .btn-back {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-back:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .details {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .details h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .details ul {
+            color: #666;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+        
+        .details ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-container">
+        <div class="warning-icon">⚠️</div>
+        <h1>Website Blocked - Security Risk Detected</h1>
+        
+        <div class="warning-text">
+            The website you're trying to visit has been identified as potentially malicious and has been blocked for your protection.
+        </div>
+        
+        <div class="blocked-url">
+            <strong>Blocked URL:</strong><br>
+            <span id="blocked-url-text">Loading...</span>
+        </div>
+        
+        <div class="buttons">
+            <a href="https://google.com" class="btn btn-safe">Go to Google</a>
+            <button class="btn btn-back" onclick="window.history.back()">Go Back</button>
+            <button class="btn btn-proceed" onclick="proceedAnyway()">Proceed Anyway (Not Recommended)</button>
+        </div>
+        
+        <div class="details">
+            <h3>Why was this site blocked?</h3>
+            <ul>
+                <li>The domain is listed in our malicious websites database</li>
+                <li>The site may attempt to steal your personal information</li>
+                <li>The site could contain malware or harmful content</li>
+                <li>The site may be involved in phishing or fraud attempts</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Get the blocked URL from query parameters
+        function getBlockedUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const blockedUrl = urlParams.get('blocked');
+            if (blockedUrl) {
+                document.getElementById('blocked-url-text').textContent = decodeURIComponent(blockedUrl);
+            }
+        }
+        
+        // Function to proceed anyway (with additional warning)
+        function proceedAnyway() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const blockedUrl = urlParams.get('blocked');
+            
+            if (confirm('⚠️ WARNING: You are about to visit a potentially dangerous website.\n\nThis site has been identified as malicious and may:\n• Steal your personal information\n• Install malware on your device\n• Attempt to defraud you\n\nAre you absolutely sure you want to continue?')) {
+                if (blockedUrl) {
+                    window.location.href = decodeURIComponent(blockedUrl);
+                }
+            }
+        }
+        
+        // Initialize the page
+        getBlockedUrl();
+    </script>
+</body>
+</html>
